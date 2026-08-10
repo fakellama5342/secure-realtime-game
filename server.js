@@ -2,20 +2,15 @@
 
 require('dotenv').config();
 const express = require('express');
-const myDB =./connection';
+const myDB = require('./connection');
+const fccTesting = require('./freeCodeCamp/fcctesting.js');
 const helmet = require('helmet');
 
 const app = express();
 
-// Parche seguro para evitar que fcctesting rompa la consola con TypeError
-try {
-  const fccTesting = require('./freeCodeCamp/fcctesting.js');
-  fccTesting(app);
-} catch (e) {
-  console.log("FccTesting omitido localmente para evitar fallos.");
-}
+fccTesting(app);
 
-// Configuración de seguridad Helmet requerida
+// Cabeceras de seguridad requeridas por FreeCodeCamp
 app.use(helmet.noSniff());
 app.use(helmet.xssFilter());
 app.use(helmet.noCache());
