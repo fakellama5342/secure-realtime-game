@@ -3,14 +3,11 @@
 require('dotenv').config();
 const express = require('express');
 const myDB = require('./connection');
-const fccTesting = require('./freeCodeCamp/fcctesting.js');
 const helmet = require('helmet');
 
 const app = express();
 
-fccTesting(app);
-
-// Cabeceras de seguridad requeridas por FreeCodeCamp
+// Cabeceras de seguridad requeridas para las pruebas 16 a la 19
 app.use(helmet.noSniff());
 app.use(helmet.xssFilter());
 app.use(helmet.noCache());
